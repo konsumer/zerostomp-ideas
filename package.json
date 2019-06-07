@@ -1,0 +1,17 @@
+{
+  "name": "zerostomp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node -r esm index.js"
+  },
+  "author": "David Konsumer <konsumer@jetboystudio.com> (http://konsumer.js.org)",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "latest",
+    "glob": "latest",
+    "node-libpd": "latest",
+    "raspi": "latest",
+    "raspi-gpio": "latest"
+  }
+}
