@@ -1,0 +1,29 @@
+{
+  "name": "zerostomp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "genpd": "ffi-generate -f /usr/local/include/libpd/z_libpd.h -l libpd"
+  },
+  "author": "David Konsumer <konsumer@jetboystudio.com> (http://konsumer.js.org)",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "latest",
+    "glob": "latest",
+    "node-libpd": "latest",
+    "raspi": "latest",
+    "raspi-gpio": "latest",
+    "ffi-generate": "latest"
+  },
+  "description": "This is a cheap & easily-programmable effects pedal / synth that's easy to build",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konsumer/zerostomp.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/konsumer/zerostomp/issues"
+  },
+  "homepage": "https://github.com/konsumer/zerostomp#readme"
+}

@@ -31,15 +31,15 @@ When a patch loads, it receives any stored params to `init-value` message, and s
 
 ## hardware
 
-The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero to do all the work. It uses 3 rotary-encoders for input, a single 3PDT footswitch (to connect/disconnect audio L/R + LED color) and you can push in the first rotary encoder and turn it to select different effects. It has a Nokia 5110 to display status and show the values of different parameters.
+The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero to do all the work. It uses 4 rotary-encoders for input, a single 3PDT footswitch for true-bypass, and 2 buttons to select the current patch. It has a Nokia 5110 to display status and show the values of different parameters.
 
 ### parts
 
 * [nice enclosures & buttons](https://www.mammothelectronics.com/)
 * [audio usb](https://www.adafruit.com/product/1475)
 * [USB Host adapter for plugging in audio](https://www.adafruit.com/product/1099)
-* [panel-mount USB fo rpower input](https://www.adafruit.com/product/4217)
-* 3x [rotary encoders](https://www.adafruit.com/product/377)
+* [panel-mount USB for power input](https://www.adafruit.com/product/4217)
+* 4x [rotary encoders](https://www.adafruit.com/product/377)
 * [pizero](https://www.adafruit.com/product/2885)
 
 
@@ -51,12 +51,11 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 Here is setup procedure:
 
 ```
-sudo -s
-apt update
-apt upgrade
-apt install python-pip git python-pyaudio
-mkdir /media/zerostomp
-mount /dev/sdb1 /media/zerostomp  # src dir
+sudo mkdir /media/zerostomp
+sudo mount /dev/sdb1 /media/zerostomp
+sudo /media/zerostomp/setup.sh
 ```
 
 now your files in `src/` are available in `/media/zerostomp` and you can copy to `/boot/zerostomp` when you are done.
+
+At this point I did all the optimization stuff above.
