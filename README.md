@@ -11,14 +11,14 @@ This is a cheap & easily-programmable effects pedal / synth that's easy to build
 * implement [these](https://guitarextended.wordpress.com/audio-effects-for-guitar-with-pure-data/) and other basic effect patches
 * add support for expression pedal
 * do something smart with rotary push-state
+* put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)?
+* get purr-data running so it has all the nice fresh extensions
 
 ## software
 
-* install node, puredata, plugin~ lots of ladspa plugins
 * stores this repo & patches on sdcard
-* the control code is written in javascript for easy editing & fun
 * each effect is a patch made in puredata.
-* port [this](https://github.com/modmypi/Rotary-Encoder/blob/master/rotary_encoder.py) to node
+* uses [this](https://github.com/modmypi/Rotary-Encoder/blob/master/rotary_encoder.py) to read encoders
 
 ### optimization
 
@@ -41,3 +41,22 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 * [panel-mount USB fo rpower input](https://www.adafruit.com/product/4217)
 * 3x [rotary encoders](https://www.adafruit.com/product/377)
 * [pizero](https://www.adafruit.com/product/2885)
+
+
+## NOTES
+
+* Run emulator with `make`
+* Press `Ctrl-A` then `X` to exit emulator
+
+Here is setup procedure:
+
+```
+sudo -s
+apt update
+apt upgrade
+apt install python-pip git python-pyaudio
+mkdir /media/zerostomp
+mount /dev/sdb1 /media/zerostomp  # src dir
+```
+
+now your files are available in `src/` and you can copy `/media/zerostomp` to `/boot/zerostomp` when you are done.
