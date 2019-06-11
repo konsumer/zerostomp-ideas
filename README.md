@@ -59,4 +59,4 @@ mkdir /media/zerostomp
 mount /dev/sdb1 /media/zerostomp  # src dir
 ```
 
-now your files are available in `src/` and you can copy `/media/zerostomp` to `/boot/zerostomp` when you are done.
+now your files in `src/` are available in `/media/zerostomp` and you can copy to `/boot/zerostomp` when you are done.
