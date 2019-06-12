@@ -16,9 +16,8 @@ apt update -y
 apt upgrade -y
 
 # setup libpd
-apt install -y build-base git jack-dev alsa-lib-dev git
-git clone --recursive https://github.com/libpd/libpd /root/libpd
-cd /root/libpd && make && make install
+apt install -y libjack-dev libasound2-dev git
+git clone --depth 1 --recursive https://github.com/libpd/libpd /root/libpd && cd /root/libpd && make && make install
 
 # halt v-machine
 poweroff
