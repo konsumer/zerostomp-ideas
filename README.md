@@ -18,7 +18,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 
 ## software
 
-* stores this repo & patches on sdcard
+* stores patches on sdcard in `zerostomp/patches`
 * each effect is a patch made in puredata.
 * uses [this](https://github.com/modmypi/Rotary-Encoder/blob/master/rotary_encoder.py) to read encoders
 
@@ -47,33 +47,39 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 
 ## NOTES
 
-### docker
-
-Use this to dev the patches, as it's self-containeed and faster than the emulator. It requires a linux host, though (for sound.)
-
-```
-make run      # run local version of docker image
-make release  # publish on dockerhub
-```
-
-```
-sudo docker run --rm -ti --device /dev/snd konsumer/zerostomp
-```
-
 ### emulator
 
 * Run emulator with `make emu`
 * Press `Ctrl-A` then `X` to exit emulator
 * `sudo poweroff` will cleanly shutdown
+* don't edit files on the host when the emulator is running or they may get corrupt. Eventually I may be able to use a network-mount or something to help with this.
 
 Here is setup procedure:
 
 ```
-sudo mkdir /media/zerostomp
-sudo mount /dev/sdb1 /media/zerostomp
-sudo /media/zerostomp/setup.sh
+sudo mkdir -p /media/zerostomp/emu
+sudo mount /dev/sdb1 /media/zerostomp/emu
+sudo /media/zerostomp/emu/setup.sh
 ```
 
-Now your files in `emu/` are available in `/media/zerostomp` and you can copy to `/boot/zerostomp` when you are done. Be careful not to edit anything in that dir on the host, though, as it will corrupt it.
+On next boot, you'll have more stuff in `/media/zerostomp` & `/boot/zerostomp`
 
-`setup.sh` should do all the optimization, from above, and put docker images & scripts in place
+
+This will give you a dev environment, so you can do this:
+
+```
+cd /media/zerostomp/app
+
+make
+./zerostomp
+```
+
+and
+
+```
+make release
+```
+
+to create a libpd + compiled zerostomp bundle in /media/zerostomp/app/zerostomp.tgz
+
+Then you can use this to build your image on your host.

@@ -2,7 +2,7 @@
 Description=ZeroStomp
 
 [Service]
-ExecStart=docker run -v /boot/zerostomp/patches:/zerostomp/patches -it --rm konsumer/zerostomp
+ExecStart=zerostomp
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=zerostomp
