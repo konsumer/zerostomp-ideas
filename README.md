@@ -15,6 +15,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * do something smart with rotary push-state
 * put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)?
 * get purr-data running so it has all the nice fresh extensions
+* Use `/boot/startup.sh` method (used in dev) to fast-boot into pd.
 
 ## software
 
@@ -49,17 +50,15 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 
 ### emulator
 
-* Run emulator with `make emu`
+* Run emulator with `make dev`
 * Press `Ctrl-A` then `X` to exit emulator
 * `sudo poweroff` will cleanly shutdown
-* don't edit files on the host when the emulator is running or they may get corrupt. Eventually I may be able to use a network-mount or something to help with this.
+* don't edit files on the host when the emulator is running or they may get corrupt. Eventually I will setup network-mount or something to help with this.
 
 Here is setup procedure:
 
 ```
-sudo mkdir -p /media/zerostomp/emu
-sudo mount /dev/sdb1 /media/zerostomp/emu
-sudo /media/zerostomp/emu/setup.sh
+sudo make setupdev
 ```
 
 On next boot, you'll have more stuff in `/media/zerostomp` & `/boot/zerostomp`
@@ -68,15 +67,16 @@ On next boot, you'll have more stuff in `/media/zerostomp` & `/boot/zerostomp`
 This will give you a dev environment, so you can do this:
 
 ```
-cd /media/zerostomp/app
+make dev
+```
 
+and inside emulator:
+
+```
+sudo -s
+cd /media/zerostomp/app
 make
 ./zerostomp
-```
-
-and
-
-```
 make release
 ```
 

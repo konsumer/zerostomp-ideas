@@ -47,7 +47,7 @@ void init(){
    lpd.computeAudio(true);
 
    // load the patch
-   pd::Patch patch = lpd.openPatch("MAIN.pd", "/zerostomp/patches");
+   pd::Patch patch = lpd.openPatch("MAIN.pd", "/boot/zerostomp/patches");
    std::cout << patch << std::endl;
 
    // use the RtAudio API to connect to the default audio device

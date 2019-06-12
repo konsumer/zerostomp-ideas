@@ -1,14 +1,18 @@
 # this uses qemu + make to manage your zerostomp image
 
-APP_NAME='zerostomp'
-CWD=$(shell pwd)
-KERNEL=kernel-qemu-4.14.79-stretch
-DOCKER_REPO=konsumer
-VERSION=0.0.1
+APP_NAME = 'zerostomp'
+CWD = $(shell pwd)
+KERNEL = kernel-qemu-4.14.79-stretch
+
+.PHONY: dev
+
+setupdev: devimage kernel
+	@echo "Setting up dev-environment"
+	@./emu/setupdev.sh images/$(APP_NAME).img
 
 # Launch the docker image into an emulated session
-emu: images/$(APP_NAME).img images/$(KERNEL) images/versatile-pb.dtb
-	@echo "Launching interactive emulated session"
+dev:
+	@echo "Launching emulated dev-environment session"
 	@qemu-system-arm -nographic\
 		-append 'root=/dev/sda2 rw panic=1'\
 		-dtb images/versatile-pb.dtb\
@@ -36,3 +40,7 @@ images/raspbian_lite.zip:
 images/$(APP_NAME).img: images/raspbian_lite.zip
 	@echo "Extracting disk image for raspbian_lite."
 	@unzip -p images/raspbian_lite.zip '*.img' > images/$(APP_NAME).img
+
+devimage: images/$(APP_NAME).img
+kernel: images/$(KERNEL) images/versatile-pb.dtb
+

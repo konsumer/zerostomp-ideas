@@ -5,7 +5,7 @@
 # it's just to setup the initial developer image
 
 # save filesystem layout for next boot
-mkdir -p /media/zerostomp/app /boot/zerostomp/patches
+mkdir -p /media/zerostomp/emu /media/zerostomp/app /boot/zerostomp/patches
 echo "" >> /etc/fstab
 echo "/dev/sdb1 /media/zerostomp/emu vfat default 0 0" >> /etc/fstab
 echo "/dev/sdc1 /media/zerostomp/app vfat default 0 0" >> /etc/fstab
