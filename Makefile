@@ -8,7 +8,7 @@ KERNEL = kernel-qemu-4.14.79-stretch
 
 setup: devimage kernel
 	@echo "Setting up dev-environment"
-	@./emu/setup.sh images/$(APP_NAME).img
+	@./builder/setup.sh images/$(APP_NAME).img
 	make emu
 
 # Launch the docker image into an emulated session

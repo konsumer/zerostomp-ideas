@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# this gets run on host to build the image
+
 set -e
 function cleanup {
   sudo umount -f "${ROOT}/boot/"
@@ -12,6 +14,7 @@ LOOP=$(sudo losetup --show -fP "${1}")
 sudo mount "${LOOP}p2" "${ROOT}"
 sudo mount "${LOOP}p1" "${ROOT}/boot/"
 
-cp emu/config.txt "${ROOT}/boot/"
-cp emu/rc.local "${ROOT}/etc/rc.local"
-cp emu/startup.sh "${ROOT}/boot/startup.sh"
+cp builder/config.txt "${ROOT}/boot/"
+cp -R patches "${ROOT}/boot/"
+cp builder/rc.local "${ROOT}/etc/rc.local"
+cp builder/startup.sh "${ROOT}/boot/startup.sh"

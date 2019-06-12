@@ -16,6 +16,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)?
 * get purr-data running so it has all the nice fresh extensions
 * Use `/boot/startup.sh` method (used in dev) to fast-boot into pd.
+* Update [pdpi](https://github.com/konsumer/pdpi) to use all this stuff, so this repo can be much simpler.
 
 ## software
 
@@ -50,12 +51,12 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 
 ### emulator
 
-* Run emulator with `make dev`
+* Run emulator with `make emu`
 * Press `Ctrl-A` then `X` to exit emulator
 * `sudo poweroff` will cleanly shutdown
 * don't edit files in `patches/` on the host when the emulator is running or they may get corrupt. Eventually I will setup network-mount or something to help with this.
 
-Here is 1-time setup procedure:
+Here is the image-build procedure:
 
 ```
 sudo make setup
@@ -69,4 +70,4 @@ make emu
 
 ### puredata
 
-You can run `patches/EMULATOR.py` to emulate zerostomp, on the host system to test out stuff, if you have `pd` in your path.
+You can run `emulator/MAIN.py` to emulate zerostomp, on the host system to test out stuff, if you have `pd` in your path.
