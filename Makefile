@@ -4,14 +4,15 @@ APP_NAME = 'zerostomp'
 CWD = $(shell pwd)
 KERNEL = kernel-qemu-4.14.79-stretch
 
-.PHONY: dev
+.PHONY: emu
 
-setupdev: devimage kernel
+setup: devimage kernel
 	@echo "Setting up dev-environment"
-	@./emu/setupdev.sh images/$(APP_NAME).img
+	@./emu/setup.sh images/$(APP_NAME).img
+	make emu
 
 # Launch the docker image into an emulated session
-dev:
+emu:
 	@echo "Launching emulated dev-environment session"
 	@qemu-system-arm -nographic\
 		-append 'root=/dev/sda2 rw panic=1'\
@@ -19,8 +20,6 @@ dev:
 		-kernel images/$(KERNEL)\
 		-cpu arm1176 -m 256 -M versatilepb\
 		-drive file=images/$(APP_NAME).img,format=raw\
-		-drive file=fat:rw:$(CWD)/emu\
-		-drive file=fat:rw:$(CWD)/app\
 		-drive file=fat:rw:$(CWD)/patches\
 		-no-reboot
 

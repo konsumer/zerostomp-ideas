@@ -53,33 +53,20 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 * Run emulator with `make dev`
 * Press `Ctrl-A` then `X` to exit emulator
 * `sudo poweroff` will cleanly shutdown
-* don't edit files on the host when the emulator is running or they may get corrupt. Eventually I will setup network-mount or something to help with this.
+* don't edit files in `patches/` on the host when the emulator is running or they may get corrupt. Eventually I will setup network-mount or something to help with this.
 
-Here is setup procedure:
-
-```
-sudo make setupdev
-```
-
-On next boot, you'll have more stuff in `/media/zerostomp` & `/boot/zerostomp`
-
-
-This will give you a dev environment, so you can do this:
+Here is 1-time setup procedure:
 
 ```
-make dev
+sudo make setup
 ```
 
-and inside emulator:
+You can run the image in an emulator, but it will probly be missing stuff like sound:
 
 ```
-sudo -s
-cd /media/zerostomp/app
-make
-./zerostomp
-make release
+make emu
 ```
 
-to create a libpd + compiled zerostomp bundle in /media/zerostomp/app/zerostomp.tgz
+### puredata
 
-Then you can use this to build your image on your host.
+You can run `patches/EMULATOR.py` to emulate zerostomp, on the host system to test out stuff, if you have `pd` in your path.
