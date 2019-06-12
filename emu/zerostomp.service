@@ -1,0 +1,14 @@
+[Unit]
+Description=ZeroStomp
+
+[Service]
+ExecStart=docker run -v /boot/zerostomp/patches:/zerostomp/patches -it --rm konsumer/zerostomp
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=zerostomp
+User=pi
+Group=pi
+WorkingDirectory=/boot/zerostomp
+
+[Install]
+WantedBy=basic.target

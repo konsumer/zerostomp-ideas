@@ -2,6 +2,8 @@
 
 This is a cheap & easily-programmable effects pedal / synth that's easy to build.
 
+It includes a text-mode emulator (in qemu) so you can easily build images, and runs on docker for easy management & development.
+
 # WORK IN PROGRESS
 
 ## TODO
@@ -45,8 +47,24 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 
 ## NOTES
 
-* Run emulator with `make`
+### docker
+
+Use this to dev the patches, as it's self-containeed and faster than the emulator. It requires a linux host, though (for sound.)
+
+```
+make run      # run local version of docker image
+make release  # publish on dockerhub
+```
+
+```
+sudo docker run --rm -ti --device /dev/snd konsumer/zerostomp
+```
+
+### emulator
+
+* Run emulator with `make emu`
 * Press `Ctrl-A` then `X` to exit emulator
+* `sudo poweroff` will cleanly shutdown
 
 Here is setup procedure:
 
@@ -56,6 +74,6 @@ sudo mount /dev/sdb1 /media/zerostomp
 sudo /media/zerostomp/setup.sh
 ```
 
-now your files in `src/` are available in `/media/zerostomp` and you can copy to `/boot/zerostomp` when you are done.
+Now your files in `emu/` are available in `/media/zerostomp` and you can copy to `/boot/zerostomp` when you are done. Be careful not to edit anything in that dir on the host, though, as it will corrupt it.
 
-At this point I did all the optimization stuff above.
+`setup.sh` should do all the optimization, from above, and put docker images & scripts in place
