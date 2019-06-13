@@ -25,7 +25,7 @@ pip3 install python-osc
 # TODO: do more optimization here
 
 # overwrite this script with startup command
-echo -e "python3 /boot/patches/MAIN.py &\n" > /boot/startup.sh
+echo -e "#!/bin/sh\npython3 /boot/patches/MAIN.py &\npd -nogui /boot/patches/MAIN.pd &\n" > /boot/startup.sh
 
 # halt v-machine
 poweroff
