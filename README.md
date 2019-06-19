@@ -14,9 +14,11 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * add support for expression pedal
 * do something smart with rotary push-state
 * put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)?
+* replace pd with [mod-host](https://github.com/moddevices/mod-host) & ladspa for better performance?
 * get purr-data running so it has all the nice fresh extensions
 * Use `/boot/startup.sh` method (used in dev) to fast-boot into pd.
 * Update [pdpi](https://github.com/konsumer/pdpi) to use all this stuff, so this repo can be much simpler.
+* need faster/easier way to program it. Expose serial or something.
 
 ## software
 
