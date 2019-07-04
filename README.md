@@ -74,6 +74,8 @@ These are the pins I hookup:
 * `B*` are input buttons
 * `L*` are LCD hookups
 
+If you need more reference, [this](https://cdn.sparkfun.com/assets/learn_tutorials/6/7/6/PiZero_1.pdf) has a nice pinout diagram.
+
 ## software
 
 * stores patches on sdcard in `zerostomp/patches`
