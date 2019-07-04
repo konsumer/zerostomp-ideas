@@ -36,6 +36,44 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 * [3PDT bypass footswitch](https://www.mammothelectronics.com/collections/footswitches/products/3pdt-ls-pro-footswitch)
 * [Nokia 5110 LCD](https://www.adafruit.com/product/338) this [OLED display](https://www.amazon.com/MakerFocus-Display-SSD1306-3-3V-5V-Arduino/dp/B0761LV1SD/ref=pd_rhf_dp_s_all_spx_wp_0_3/134-4039483-3143422?_encoding=UTF8&pd_rd_i=B0761LV1SD&pd_rd_r=17ceed7d-2098-49cf-ae9b-a86382757db0&pd_rd_w=7hfrp&pd_rd_wg=BXBz1&pf_rd_p=ffd394b3-6bb0-43ec-8bd8-b3dd44ab44d6&pf_rd_r=0RZCJGGR9AV8SPX9KTTX&refRID=0RZCJGGR9AV8SPX9KTTX&th=1) looks nice & would be simpler to hookup, but will require different drivers.
 
+### pins
+
+These are the pins I hookup:
+
+```
+         +-----+-----+---------+-Pi ZeroW-+---------+-----+-----+
+         | BCM | wPi |   Name  | Physical | Name    | wPi | BCM |
+         +-----+-----+---------+----++----+---------+-----+-----+
+         |     |     |    3.3v |  1 || 2  | 5v      |     |     |
+         |   2 |   8 |   SDA.1 |  3 || 4  | 5v      |     |     |
+         |   3 |   9 |   SCL.1 |  5 || 6  | 0v      |     |     |
+         |   4 |   7 | GPIO. 7 |  7 || 8  | TxD     | 15  | 14  | K1-DT
+         |     |     |      0v |  9 || 10 | RxD     | 16  | 15  | K1-CLK
+         |  17 |   0 | GPIO. 0 | 11 || 12 | GPIO. 1 | 1   | 18  | L-CS
+         |  27 |   2 | GPIO. 2 | 13 || 14 | 0v      |     |     |
+         |  22 |   3 | GPIO. 3 | 15 || 16 | GPIO. 4 | 4   | 23  | K2-DT
+         |     |     |    3.3v | 17 || 18 | GPIO. 5 | 5   | 24  | K2-CLK
+ L-DIN   |  10 |  12 |    MOSI | 19 || 20 | 0v      |     |     |
+         |   9 |  13 |    MISO | 21 || 22 | GPIO. 6 | 6   | 25  | 
+ L-CLK   |  11 |  14 |    SCLK | 23 || 24 | CE0     | 10  | 8   | 
+         |     |     |      0v | 25 || 26 | CE1     | 11  | 7   |
+         |   0 |  30 |   SDA.0 | 27 || 28 | SCL.0   | 31  | 1   |
+ B1      |   5 |  21 | GPIO.21 | 29 || 30 | 0v      |     |     |
+ B2      |   6 |  22 | GPIO.22 | 31 || 32 | GPIO.26 | 26  | 12  | K3-DT
+ L-D/C   |  13 |  23 | GPIO.23 | 33 || 34 | 0v      |     |     |
+ L-RST   |  19 |  24 | GPIO.24 | 35 || 36 | GPIO.27 | 27  | 16  | K3-CLK
+         |  26 |  25 | GPIO.25 | 37 || 38 | GPIO.28 | 28  | 20  | K4-DT
+         |     |     |      0v | 39 || 40 | GPIO.29 | 29  | 21  | K5-CLK
+         +-----+-----+---------+----++----+---------+-----+-----+
+         | BCM | wPi |   Name  | Physical | Name    | wPi | BCM |
+         +-----+-----+---------+-Pi ZeroW-+---------+-----+-----+
+
+```
+
+* `K*` are rotary encoders knobs
+* `B*` are input buttons
+* `L*` are LCD hookups
+
 ## software
 
 * stores patches on sdcard in `zerostomp/patches`
