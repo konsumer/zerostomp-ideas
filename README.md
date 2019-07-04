@@ -55,7 +55,7 @@ When a pd patch loads, it receives any stored params to `init-value` message, an
 
 ### emulator
 
-**TODO:** This can be made much simpler with `arm32v7/debian:stretch-slim` docker
+**TODO:** This can be made much simpler with `arm32v7/debian:stretch-slim` docker to build stuff in pi-space
 
 * Run emulator with `make emu`
 * Press `Ctrl-A` then `X` to exit emulator
