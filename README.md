@@ -28,12 +28,13 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 * [nice enclosures & buttons](https://www.mammothelectronics.com/)
 * [audio hat](https://www.amazon.com/gp/product/B075V1VNDD/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1)
 * [panel-mount USB for power & input](https://www.adafruit.com/product/4217)
-* 4x [rotary encoders with pullup resistors](https://www.amazon.com/gp/product/B06XQTHDRR/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
+* 4x [rotary encoders with pullup resistors](https://www.amazon.com/gp/product/B06XQTHDRR/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1) [this i2c rotary-controller](https://www.tindie.com/products/saimon/i2cencoder-v2-connect-multiple-encoder-on-i2c-bus/) also looks cool to simplify hookup, but it adds a bit of cost to the project
 * [pizero](https://www.adafruit.com/product/2885)
 * [stacking header](https://www.amazon.com/gp/product/B071XCHZNB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
 * 2x [input buttons](https://www.amazon.com/gp/product/B076V2QYSJ/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 * 2x [audio jacks](https://www.amazon.com/gp/product/B00CO6Q1II/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 * [3PDT bypass footswitch](https://www.mammothelectronics.com/collections/footswitches/products/3pdt-ls-pro-footswitch)
+* [Nokia 5110 LCD](https://www.adafruit.com/product/338) [this OLED display](https://www.amazon.com/MakerFocus-Display-SSD1306-3-3V-5V-Arduino/dp/B0761LV1SD/ref=pd_rhf_dp_s_all_spx_wp_0_3/134-4039483-3143422?_encoding=UTF8&pd_rd_i=B0761LV1SD&pd_rd_r=17ceed7d-2098-49cf-ae9b-a86382757db0&pd_rd_w=7hfrp&pd_rd_wg=BXBz1&pf_rd_p=ffd394b3-6bb0-43ec-8bd8-b3dd44ab44d6&pf_rd_r=0RZCJGGR9AV8SPX9KTTX&refRID=0RZCJGGR9AV8SPX9KTTX&th=1) looks nice, too, but will require different drivers.
 
 ## software
 
