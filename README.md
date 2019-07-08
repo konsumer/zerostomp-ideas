@@ -15,9 +15,11 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * do something smart with rotary push-state
 * put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)?
 * replace pd with [mod-host](https://github.com/moddevices/mod-host) & ladspa for better performance?
+* Optimize the kernel for rt-audio
 * get purr-data running so it has all the nice fresh extensions
 * Use `/boot/startup.sh` method (used in dev) to fast-boot into pd.
 * Redesign [pdpi](https://github.com/konsumer/pdpi) to use all this stuff
+
 
 ## hardware
 
@@ -35,6 +37,8 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 * 2x [audio jacks](https://www.amazon.com/gp/product/B00CO6Q1II/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 * [3PDT bypass footswitch](https://www.mammothelectronics.com/collections/footswitches/products/3pdt-ls-pro-footswitch)
 * [Nokia 5110 LCD](https://www.adafruit.com/product/338) this [OLED display](https://www.amazon.com/MakerFocus-Display-SSD1306-3-3V-5V-Arduino/dp/B0761LV1SD/ref=pd_rhf_dp_s_all_spx_wp_0_3/134-4039483-3143422?_encoding=UTF8&pd_rd_i=B0761LV1SD&pd_rd_r=17ceed7d-2098-49cf-ae9b-a86382757db0&pd_rd_w=7hfrp&pd_rd_wg=BXBz1&pf_rd_p=ffd394b3-6bb0-43ec-8bd8-b3dd44ab44d6&pf_rd_r=0RZCJGGR9AV8SPX9KTTX&refRID=0RZCJGGR9AV8SPX9KTTX&th=1) looks nice & would be simpler to hookup, but will require different drivers.
+* [breakout board](https://www.buyapi.ca/product/raspberry-pi-3-cobbler-breakout-kit/) - to connect peripherals to a nice cable connector
+* [standoffs](https://www.buyapi.ca/product/brass-m2-5-standoffs-for-pi-hats-pack-of-4/)
 
 ### pins
 
@@ -101,7 +105,7 @@ When a pd patch loads, it receives any stored params to `init-value` message, an
 * Run emulator with `make emu`
 * Press `Ctrl-A` then `X` to exit emulator
 * `sudo poweroff` will cleanly shutdown
-* don't edit files in `patches/` on the host when the emulator is running or they may get corrupt. Eventually I will setup network-mount or something to help with this.
+* don't edit files in `patches/` on the host when the emulator is running or they may get corrupt. Eventually I will setup network-mount, docker-volume or something to help with this.
 
 Here is the image-build procedure:
 
