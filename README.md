@@ -15,11 +15,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * do something smart with rotary push-state
 * put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)? Also, use kernel rotary evdev with [hid](https://at.or.at/hans/pd/hid.html)
 * replace pd with [mod-host](https://github.com/moddevices/mod-host) & ladspa for better performance? I could make custom stuff in [faust](http://faust.grame.fr/) and even a completely standalone console-app with `faust2jackconsole`. There are some nice ideas [here](http://lac.linuxaudio.org/2008/download/papers/22.pdf)
-* Optimize the kernel for rt-audio
-* get purr-data running so it has all the nice fresh extensions
-* Use `/boot/startup.sh` method (used in dev) to fast-boot into pd.
 * Redesign [pdpi](https://github.com/konsumer/pdpi) to use all this stuff
-* Automate installation of [Audio-Injector](https://github.com/Audio-Injector/stereo-and-zero)
 
 
 ## hardware
@@ -96,6 +92,7 @@ When a pd patch loads, it receives any stored params to `init-value` message, an
 * [trimmed down distro](https://gist.github.com/hhromic/78e3d849ec239b6a4789ae8842701838)
 * [fast boot linux](http://himeshp.blogspot.com/2018/08/fast-boot-with-raspberry-pi.html) (under 2s)
 * [optimize sound](https://wiki.linuxaudio.org/wiki/raspberrypi)
+* Optimize for rt-audio
 
 ## NOTES
 
