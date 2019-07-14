@@ -15,6 +15,7 @@ sudo mount "${LOOP}p2" "${ROOT}"
 sudo mount "${LOOP}p1" "${ROOT}/boot/"
 
 cp builder/config.txt "${ROOT}/boot/"
+cp builder/cmdline.txt "${ROOT}/boot/"
 cp -R patches "${ROOT}/boot/"
 cp -R assets "${ROOT}/boot/"
 cp -R zerostomp.py "${ROOT}/boot/"

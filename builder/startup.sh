@@ -32,5 +32,10 @@ rpi-update
 # overwrite this script with startup command
 echo -e "#!/bin/sh\npython3 /boot/zerostomp.py &\npd-l2ork -nogui /boot/patches/MAIN.pd &\n" > /boot/startup.sh
 
+# chnage name to "zerostomp"
+echo "zerostomp" > /etc/hostname
+sed -i s/raspberrypi/zerostomp/g /etc/hosts
+
+
 # halt v-machine
 poweroff
