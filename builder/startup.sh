@@ -27,7 +27,7 @@ apt install pd-l2ork-2.9.0-20190416-rev.2b3f27c1-armv7l.deb
 # TODO: do more optimization here
 
 # overwrite this script with startup command
-echo -e "#!/bin/sh\npython3 /boot/patches/MAIN.py &\npd -nogui /boot/patches/MAIN.pd &\n" > /boot/startup.sh
+echo -e "#!/bin/sh\npython3 /boot/zerostomp.py &\npd -nogui /boot/patches/MAIN.pd &\n" > /boot/startup.sh
 
 # halt v-machine
 poweroff
