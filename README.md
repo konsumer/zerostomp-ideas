@@ -19,6 +19,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * get purr-data running so it has all the nice fresh extensions
 * Use `/boot/startup.sh` method (used in dev) to fast-boot into pd.
 * Redesign [pdpi](https://github.com/konsumer/pdpi) to use all this stuff
+* Automate installation of [Audio-Injector](https://github.com/Audio-Injector/stereo-and-zero)
 
 
 ## hardware
