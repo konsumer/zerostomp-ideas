@@ -14,7 +14,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * add support for expression pedal
 * do something smart with rotary push-state
 * put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)? Also, use kernel rotary evdev with [hid](https://at.or.at/hans/pd/hid.html)
-* replace pd with [mod-host](https://github.com/moddevices/mod-host) & ladspa for better performance? I could make custom stuff in [faust](http://faust.grame.fr/) and even a completely standalone console-app with `faust2jackconsole`
+* replace pd with [mod-host](https://github.com/moddevices/mod-host) & ladspa for better performance? I could make custom stuff in [faust](http://faust.grame.fr/) and even a completely standalone console-app with `faust2jackconsole`. There are some nice ideas [here](http://lac.linuxaudio.org/2008/download/papers/22.pdf)
 * Optimize the kernel for rt-audio
 * get purr-data running so it has all the nice fresh extensions
 * Use `/boot/startup.sh` method (used in dev) to fast-boot into pd.
