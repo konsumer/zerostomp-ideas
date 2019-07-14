@@ -13,7 +13,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * implement [these](https://guitarextended.wordpress.com/audio-effects-for-guitar-with-pure-data/) and other basic effect patches
 * add support for expression pedal
 * do something smart with rotary push-state
-* put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)?
+* put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)? Also, use kernel rotary evdev with [hid](https://at.or.at/hans/pd/hid.html)
 * replace pd with [mod-host](https://github.com/moddevices/mod-host) & ladspa for better performance?
 * Optimize the kernel for rt-audio
 * get purr-data running so it has all the nice fresh extensions
