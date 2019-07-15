@@ -1,12 +1,6 @@
 # Disable the rainbow splash screen
 disable_splash=1
 
-# Disable bluetooth
-dtoverlay=pi3-disable-bt
-
-# Disable Wifi
-dtoverlay=pi3-disable-wifi
-
 # Set the bootloader delay to 0 seconds. The default is 1s if not specified.
 boot_delay=0
 
@@ -23,16 +17,21 @@ dtoverlay=audioinjector-wm8731-audio
 # Enable hardware SPI (for LCD)
 dtparam=spi=on
 
-# Ethernet gadget
-# https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget
-# need to add modules-load=dwc2,g_ether to /boot/cmdline.txt, too
-# Be sure to setup internet forwarding on the host
-# this seems like a cool way to enable it on-demand:
-# https://idea.isnew.info/how-to-connect-to-the-internet-over-usb-from-the-raspberry-pi-zero.html
-dtoverlay=dwc2
-
 # turn on events for rotary-encoders
 dtoverlay=rotary-encoder,pin_a=4,pin_b=17,relative_axis=1
 dtoverlay=rotary-encoder,pin_a=22,pin_b=26,relative_axis=1
 dtoverlay=rotary-encoder,pin_a=24,pin_b=25,relative_axis=1
 dtoverlay=rotary-encoder,pin_a=16,pin_b=20,relative_axis=1
+
+# Disable bluetooth
+dtoverlay=pi3-disable-bt
+
+# Disable Wifi
+dtoverlay=pi3-disable-wifi
+
+# Ethernet gadget
+# https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget
+# need to add modules-load=dwc2,g_ether to /boot/cmdline.txt, too
+# Be sure to setup internet forwarding on the host
+# https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-tweaks
+dtoverlay=dwc2

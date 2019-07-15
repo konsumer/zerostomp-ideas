@@ -7,12 +7,15 @@ function cleanup {
   sudo umount -f "${ROOT}/boot/"
   sudo umount -f "${ROOT}"
   rm -rf "${ROOT}"
+  losetup -d "${LOOP}"
 }
 trap cleanup EXIT
+
 ROOT=$(mktemp -d)
-LOOP=$(sudo losetup --show -fP "${1}")
-sudo mount "${LOOP}p2" "${ROOT}"
-sudo mount "${LOOP}p1" "${ROOT}/boot/"
+LOOP=$(losetup --show -fP "${1}")
+
+mount "${LOOP}p2" "${ROOT}"
+mount "${LOOP}p1" "${ROOT}/boot/"
 
 cp builder/config.txt "${ROOT}/boot/"
 cp builder/cmdline.txt "${ROOT}/boot/"
@@ -21,3 +24,5 @@ cp -R assets "${ROOT}/boot/"
 cp -R zerostomp.py "${ROOT}/boot/"
 cp builder/rc.local "${ROOT}/etc/rc.local"
 cp builder/startup.sh "${ROOT}/boot/startup.sh"
+
+chroot "${ROOT}" /boot/startup.sh
