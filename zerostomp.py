@@ -37,16 +37,11 @@ def setup():
 
   ASSET_DIR=os.path.join(os.path.dirname(__file__), 'assets')
   disp = LCD.PCD8544(23, 24, spi=SPI.SpiDev(0, 0, max_speed_hz=4000000))
-  #font = ImageFont.truetype('%s/VCR_OSD_MONO_1.001.ttf' % ASSET_DIR, 6)
   font = ImageFont.truetype('%s/ProFontWindows.ttf' % ASSET_DIR, 6)
   imageText = Image.new('1',(LCD.LCDWIDTH, LCD.LCDHEIGHT))
   imageWait = Image.open('%s/please_wait.ppm' % ASSET_DIR).convert('1')
   draw = ImageDraw.Draw(imageText)
   name='EFFECT NAME'
-  # turn on LCD backlight
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(22, GPIO.OUT)
-  GPIO.output(22, GPIO.LOW)
 
   disp.begin(contrast=60)
   disp.clear()
@@ -67,7 +62,6 @@ def loop():
 def shutdown():
   disp.clear()
   disp.display()
-  GPIO.output(22, GPIO.HIGH)
 
 setup()
 print('Press Ctrl-C to quit.')
