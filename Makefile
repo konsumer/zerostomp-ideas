@@ -1,26 +1,43 @@
-# this uses qemu + make to manage your zerostomp image
+# this uses qemu + make to manage your pi image
 
-APP_NAME = 'zerostomp'
+APP_NAME = zerostomp
 CWD = $(shell pwd)
 
-.PHONY: image
-
-# eventually, I will be able to use built-in scripts in ryankurte/docker-rpi-emu
-# but need to wait for ryankurte/docker-rpi-emu#18
-
-image: images/$(APP_NAME).img
-	@echo "Building image in the context of pi"
-	@docker run -it --rm --privileged=true \
+# build an image
+image: loopback
+	@echo "Building your $(APP_NAME) image"
+	touch "${CWD}/images/diskmount/boot/ssh"
+	cp builder/config.txt "${CWD}/images/diskmount/boot/"
+	cp builder/cmdline.txt "${CWD}/images/diskmount/boot/"
+	cp -R patches "${CWD}/images/diskmount/boot/"
+	cp -R assets "${CWD}/images/diskmount/boot/"
+	cp zerostomp.py "${CWD}/images/diskmount/boot/"
+	cp builder/rc.local "${CWD}/images/diskmount/etc/rc.local"
+	@docker run -it --rm \
 		-v ${CWD}/images:/usr/rpi/images \
 		-v ${CWD}/builder:/usr/rpi/builder \
-		-v ${CWD}/assets:/usr/rpi/assets \
-		-v ${CWD}/patches:/usr/rpi/patches \
-		-v ${CWD}/zerostomp.py:/usr/rpi/zerostomp.py \
-		-v /dev:/dev \
-		-w /usr/rpi \
 		ryankurte/docker-rpi-emu \
-		/bin/bash \
-		-c './builder/setup.sh images/$(APP_NAME).img'
+		chroot /usr/rpi/images/diskmount/ bash /usr/rpi/builder/configpi.sh
+	@sudo umount images/diskmount/boot/
+	@sudo umount images/diskmount/
+
+# run bash in context of pi image
+bash: loopback
+	@echo "Chrooting to pi image-root"
+	@docker run -it --rm \
+		-v ${CWD}/images:/usr/rpi/images \
+		ryankurte/docker-rpi-emu \
+		chroot /usr/rpi/images/diskmount/ bash
+	@sudo umount images/diskmount/boot/
+	@sudo umount images/diskmount/
+
+# mount image as loopback on host
+loopback: images/$(APP_NAME).img
+	@echo "Creating a loopback filesystem"
+	$(eval LOOP = $(shell sudo losetup --show -fP "images/${APP_NAME}.img"))
+	@mkdir -p images/diskmount
+	@sudo mount "$(LOOP)p2" images/diskmount/
+	@sudo mount "$(LOOP)p1" images/diskmount/boot/
 
 # download a zip of current raspbian-lite
 images/raspbian_lite.zip:
@@ -32,6 +49,5 @@ images/raspbian_lite.zip:
 images/$(APP_NAME).img: images/raspbian_lite.zip
 	@echo "Extracting disk image for raspbian_lite."
 	@unzip -p images/raspbian_lite.zip '*.img' > images/$(APP_NAME).img
-
 
 

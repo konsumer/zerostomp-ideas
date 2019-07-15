@@ -98,25 +98,10 @@ When a pd patch loads, it receives any stored params to `init-value` message, an
 
 ### emulator
 
-**TODO:** This can be made much simpler with `arm32v7/debian:stretch-slim` docker to build stuff in pi-space
-
-* Run emulator with `make emu`
-* Press `Ctrl-A` then `X` to exit emulator
-* `sudo poweroff` will cleanly shutdown
-* don't edit files in `patches/` on the host when the emulator is running or they may get corrupt. Eventually I will setup network-mount, docker-volume or something to help with this.
-
-Here is the image-build procedure:
+The emulator is useful for building disk-images.
 
 ```
-sudo make setup
-```
-
-You can run the image in an emulator, but it will probly be missing stuff like sound:
+make       # build your image
+make bash  # run bash in the context of the pi image, type exit to exit emulator and unmount disk
 
 ```
-make emu
-```
-
-### puredata
-
-You can run `emulator/MAIN.py` to emulate zerostomp, on the host system to test out stuff, if you have `pd` in your path.
