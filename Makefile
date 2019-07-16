@@ -1,35 +1,30 @@
 # this uses qemu + make to manage your pi image
 
 APP_NAME = zerostomp
-CWD = $(shell pwd)
+
+.PHONY: image bash loopback
 
 # build an image
 image: loopback
 	@echo "Building your $(APP_NAME) image"
-	touch "${CWD}/images/diskmount/boot/ssh"
-	cp builder/config.txt "${CWD}/images/diskmount/boot/"
-	cp builder/cmdline.txt "${CWD}/images/diskmount/boot/"
-	cp -R patches "${CWD}/images/diskmount/boot/"
-	cp -R assets "${CWD}/images/diskmount/boot/"
-	cp zerostomp.py "${CWD}/images/diskmount/boot/"
-	cp builder/rc.local "${CWD}/images/diskmount/etc/rc.local"
 	@docker run -it --rm \
-		-v ${CWD}/images:/usr/rpi/images \
-		-v ${CWD}/builder:/usr/rpi/builder \
+		-v $(PWD):/usr/rpi \
+		-v $(PWD):/usr/rpi/images/diskmount/usr/rpi \
 		ryankurte/docker-rpi-emu \
 		chroot /usr/rpi/images/diskmount/ bash /usr/rpi/builder/configpi.sh
-	@sudo umount images/diskmount/boot/
-	@sudo umount images/diskmount/
+	@sudo umount "$(LOOP)p1"
+	@sudo umount "$(LOOP)p2"
 
 # run bash in context of pi image
 bash: loopback
 	@echo "Chrooting to pi image-root"
 	@docker run -it --rm \
-		-v ${CWD}/images:/usr/rpi/images \
+		-v $(PWD):/usr/rpi \
+		-v $(PWD):/usr/rpi/images/diskmount/usr/rpi \
 		ryankurte/docker-rpi-emu \
 		chroot /usr/rpi/images/diskmount/ bash
-	@sudo umount images/diskmount/boot/
-	@sudo umount images/diskmount/
+	@sudo umount "$(LOOP)p1"
+	@sudo umount "$(LOOP)p2"
 
 # mount image as loopback on host
 loopback: images/$(APP_NAME).img
@@ -38,6 +33,14 @@ loopback: images/$(APP_NAME).img
 	@mkdir -p images/diskmount
 	@sudo mount "$(LOOP)p2" images/diskmount/
 	@sudo mount "$(LOOP)p1" images/diskmount/boot/
+
+# build a purr-data deb
+pd:
+	@echo "Building purr-data inside $(APP_NAME) image"
+	@docker run -it --rm \
+		-v $(PWD):/usr/rpi \
+		arm32v7/debian \
+		bash /usr/rpi/builder/build_purr.sh
 
 # download a zip of current raspbian-lite
 images/raspbian_lite.zip:
