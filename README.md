@@ -101,7 +101,12 @@ When a pd patch loads, it receives any stored params to `init-value` message, an
 The emulator is useful for building disk-images.
 
 ```
-make       # build your image
-make bash  # run bash in the context of the pi image, type exit to exit emulator and unmount disk
+# build your image
+make
 
+# run bash in the context of the pi image, type exit to exit emulator and unmount disk
+make bash
+
+# build purr-data for platform (for uploading to github releases for make to use in image-building)
+make images/purr-data/pd-l2ork-2.9.0-20190624-rev.e2b3cc4a-armv7l.deb
 ```

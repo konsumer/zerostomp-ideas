@@ -2,41 +2,28 @@
 
 APP_NAME = zerostomp
 
-.PHONY: image bash loopback
+.PHONY: image bash
 
 # build an image
-image: loopback
+image: images/$(APP_NAME).img
 	@echo "Building your $(APP_NAME) image"
-	@docker run -it --rm \
+	@docker run -it --rm --privileged \
 		-v $(PWD):/usr/rpi \
-		-v $(PWD):/usr/rpi/images/diskmount/usr/rpi \
-		ryankurte/docker-rpi-emu \
-		chroot /usr/rpi/images/diskmount/ bash /usr/rpi/builder/configpi.sh
-	@sudo umount "$(LOOP)p1"
-	@sudo umount "$(LOOP)p2"
+		arm32v7/debian \
+		bash /usr/rpi/builder/chroot.sh "/usr/rpi/images/$(APP_NAME).img" /usr/rpi/images/diskmount bash /usr/rpi/builder/configpi.sh
 
 # run bash in context of pi image
-bash: loopback
+bash: images/$(APP_NAME).img
 	@echo "Chrooting to pi image-root"
-	@docker run -it --rm \
+	@docker run -it --rm --privileged \
 		-v $(PWD):/usr/rpi \
-		-v $(PWD):/usr/rpi/images/diskmount/usr/rpi \
-		ryankurte/docker-rpi-emu \
-		chroot /usr/rpi/images/diskmount/ bash
-	@sudo umount "$(LOOP)p1"
-	@sudo umount "$(LOOP)p2"
-
-# mount image as loopback on host
-loopback: images/$(APP_NAME).img
-	@echo "Creating a loopback filesystem"
-	$(eval LOOP = $(shell sudo losetup --show -fP "images/${APP_NAME}.img"))
-	@mkdir -p images/diskmount
-	@sudo mount "$(LOOP)p2" images/diskmount/
-	@sudo mount "$(LOOP)p1" images/diskmount/boot/
+		arm32v7/debian \
+		bash /usr/rpi/builder/chroot.sh "/usr/rpi/images/$(APP_NAME).img" /usr/rpi/images/diskmount bash
 
 # build a purr-data deb
-pd:
-	@echo "Building purr-data inside $(APP_NAME) image"
+# This is saved in releases of this project, on github
+images/purr-data/pd-l2ork-2.9.0-20190624-rev.e2b3cc4a-armv7l.deb:
+	@echo "Building purr-data deb"
 	@docker run -it --rm \
 		-v $(PWD):/usr/rpi \
 		arm32v7/debian \
