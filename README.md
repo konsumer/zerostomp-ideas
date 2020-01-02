@@ -25,7 +25,7 @@ The pedal is meant to operate plugged-in (no battery power) and uses a pi-zero t
 ### parts
 
 * [nice enclosures & buttons](https://www.mammothelectronics.com/)
-* [audio hat](https://www.amazon.com/gp/product/B075V1VNDD/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1)
+* [audio hat](https://www.amazon.com/gp/product/B075V1VNDD/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1) look into [pi-codeczero](http://iqaudio.co.uk/hats/101-pi-codeczero.html)
 * [panel-mount USB for power & input](https://www.adafruit.com/product/4217)
 * 4x [rotary encoders with pullup resistors](https://www.amazon.com/gp/product/B06XQTHDRR/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1) this [i2c rotary-controller](https://www.tindie.com/products/saimon/i2cencoder-v2-connect-multiple-encoder-on-i2c-bus/) also looks cool to simplify hookup, but it adds a bit of cost to the project
 * [pizero](https://www.adafruit.com/product/2885)
