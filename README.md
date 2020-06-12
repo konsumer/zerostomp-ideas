@@ -16,6 +16,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * put patch/gpio controller in pd directly with [rpi-gpio](http://nyu-waverlylabs.org/rpi-gpio/)? Also, use kernel rotary evdev with [hid](https://at.or.at/hans/pd/hid.html)
 * replace pd with [mod-host](https://github.com/moddevices/mod-host) & ladspa for better performance? I could make custom stuff in [faust](http://faust.grame.fr/) and even a completely standalone console-app with `faust2jackconsole`. There are some nice ideas [here](http://lac.linuxaudio.org/2008/download/papers/22.pdf)
 * Redesign [pdpi](https://github.com/konsumer/pdpi) to use all this stuff
+* setup [multi-gadget support](http://irq5.io/2016/12/22/raspberry-pi-zero-as-multiple-usb-gadgets/) for serial, network, audio, and midi
 
 
 ## hardware
