@@ -18,6 +18,7 @@ It includes a text-mode emulator (in qemu) so you can easily build images, and r
 * Redesign [pdpi](https://github.com/konsumer/pdpi) to use all this stuff
 * setup [multi-gadget support](http://irq5.io/2016/12/22/raspberry-pi-zero-as-multiple-usb-gadgets/) for serial, network, audio, and midi
 * consider putting all IO (screen, rotary-encoders, buttons) in go. It's fast & fun, and would allow small pre-compiled binaries. Here are soem good libs for that: [gpio](https://github.com/warthog618/gpio), [i2c](https://github.com/d2r2/go-i2c)
+* Put hardware pin-settings in config.txt for complete configurability.
 
 
 ## hardware
